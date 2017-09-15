@@ -27,7 +27,7 @@ public class GenQueue<T> {
     }
 
     public synchronized T deQueue() {
-        if (start == end){
+        while (start == end){
             try{
                 wait();
             } catch (InterruptedException e) {
