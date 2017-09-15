@@ -11,16 +11,7 @@ public class Consumer implements Runnable {
     public void run() {
         while (true) {
             Integer i = queue.deQueue();
-            if (i == null) {
-                try {
-                    System.out.println("No more numbers in queue, sleeping...");
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                System.out.println("Dequeued " + i);
-            }
+            System.out.println("Dequeued " + i);
         }
     }
 }

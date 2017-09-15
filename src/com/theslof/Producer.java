@@ -17,7 +17,7 @@ public class Producer implements Runnable {
             System.out.println("Enqueueing " + i);
             queue.enQueue(i);
             try {
-                Thread.sleep(rand.nextInt(500));
+                Thread.sleep(rand.nextInt(1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

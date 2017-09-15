@@ -18,6 +18,7 @@ public class GenQueue<T> {
 
     public synchronized void enQueue(T o) {
         array[end++] = o;
+        notify();
         size++;
         if (size == length)
             resize();
@@ -26,8 +27,14 @@ public class GenQueue<T> {
     }
 
     public synchronized T deQueue() {
-        if (start == end)
-            return null;
+        if (start == end){
+            try{
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         T o = (T) array[start++];
         size--;
         start = start % length;
@@ -44,7 +51,7 @@ public class GenQueue<T> {
     }
 
     @Override
-    public synchronized String toString() {
+    public String toString() {
         String s = "[";
         for (int i = start; i != end; i++) {
             if (i != start)
