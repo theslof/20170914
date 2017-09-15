@@ -51,7 +51,7 @@ public class GenQueue<T> {
     }
 
     @Override
-    public String toString() {
+    public synchronized String toString() {
         String s = "[";
         for (int i = start; i != end; i++) {
             if (i != start)
